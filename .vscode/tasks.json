@@ -1,0 +1,83 @@
+{
+    "version": "2.0.0",
+    "tasks": [
+        {
+            "label": "Echo",
+            "type": "shell",
+            "command": [
+                "echo ${cwd}"
+            ],
+            "dependsOn": "change_dir",
+            "problemMatcher": []
+        },
+        {
+            "label": "change_dir",
+            "type": "shell",
+            "command": "cd ${workspaceFolder}/Flasher",
+            "problemMatcher": [
+            ]
+        },
+        {
+            "label": "build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "build",
+                "/property:GenerateFullPaths=false",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "options": {
+              "cwd": "${workspaceFolder}/Flasher"
+            },
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "RaspberryPI_Publish",
+            "dependsOn": "build",
+            "command": "dotnet",
+            "type": "shell",
+            "args": [
+                "publish -r linux-arm ",
+                "/property:GenerateFullPaths=false",
+                "/consoleloggerparameters:NoSummary"
+            ],
+            "group": "build",
+            "presentation": {
+                "reveal": "silent"
+            },
+            "problemMatcher": "$msCompile"
+        },
+        {
+            "label": "RaspberryPI_SCP",
+            "type": "shell",
+            "command": "bash",
+            "args": [
+                "-c",
+                "scp -i ~/.ssh/id_rsa.pub ~/Documents/foo.txt pi@192.168.0.18:~/Documents/foo.txt"
+            ],
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        },
+        {
+            "label": "RaspberryPI_Rsync",
+            "type": "shell",
+            "linux": {
+                "command": "bash",
+                "args": [
+                    "-c",
+                    "rsync -avze ssh ~/Documents/ pi@192.168.0.18:'~/Documents'"
+                ]
+            },
+            "presentation": {
+                "reveal": "always",
+                "panel": "new"
+            }
+        }
+    ]
+}
