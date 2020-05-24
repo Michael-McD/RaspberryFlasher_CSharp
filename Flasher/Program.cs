@@ -6,7 +6,7 @@ namespace Flasher
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello Mr. R. Pie!");
+            Console.WriteLine("Hello From Raspberry PI");
         }
     }
 }
