@@ -57,8 +57,7 @@
                 "group": "build",
                 "reveal": "always"
             },
-            "problemMatcher": [
-                "$msCompile"
+            "problemMatcher": [                
             ]
         }
     ]
