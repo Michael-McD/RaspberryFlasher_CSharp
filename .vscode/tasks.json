@@ -2,22 +2,6 @@
     "version": "2.0.0",
     "tasks": [
         {
-            "label": "Echo",
-            "type": "shell",
-            "command": [
-                "echo ${cwd}"
-            ],
-            "dependsOn": "change_dir",
-            "problemMatcher": []
-        },
-        {
-            "label": "change_dir",
-            "type": "shell",
-            "command": "cd ${workspaceFolder}/Flasher",
-            "problemMatcher": [
-            ]
-        },
-        {
             "label": "build",
             "command": "dotnet",
             "type": "shell",
@@ -27,57 +11,55 @@
                 "/consoleloggerparameters:NoSummary"
             ],
             "options": {
-              "cwd": "${workspaceFolder}/Flasher"
+                "cwd": "${workspaceFolder}/Flasher"
             },
             "group": "build",
             "presentation": {
+                "group": "build",
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "RaspberryPI_Publish",
+            "label": "publish",
             "dependsOn": "build",
             "command": "dotnet",
             "type": "shell",
             "args": [
-                "publish -r linux-arm ",
+                "publish",
+                "/property:runtime=linux-arm",
                 "/property:GenerateFullPaths=false",
                 "/consoleloggerparameters:NoSummary"
             ],
+            "options": {
+                "cwd": "${workspaceFolder}/Flasher"
+            },
             "group": "build",
             "presentation": {
+                "group": "build",
                 "reveal": "silent"
             },
             "problemMatcher": "$msCompile"
         },
         {
-            "label": "RaspberryPI_SCP",
-            "type": "shell",
-            "command": "bash",
-            "args": [
-                "-c",
-                "scp -i ~/.ssh/id_rsa.pub ~/Documents/foo.txt pi@192.168.0.18:~/Documents/foo.txt"
-            ],
-            "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            }
-        },
-        {
-            "label": "RaspberryPI_Rsync",
+            "label": "deploy",
+            "dependsOn": "publish",
             "type": "shell",
             "linux": {
                 "command": "bash",
                 "args": [
                     "-c",
-                    "rsync -avze ssh ~/Documents/ pi@192.168.0.18:'~/Documents'"
+                    "rsync -avze ssh ${workspaceFolder}/Flasher/bin/Debug/net5.0/publish/ pi@192.168.0.18:'~/src/Flasher/'"
                 ]
             },
+            "group": "build",
             "presentation": {
-                "reveal": "always",
-                "panel": "new"
-            }
+                "group": "build",
+                "reveal": "always"
+            },
+            "problemMatcher": [
+                "$msCompile"
+            ]
         }
     ]
 }
