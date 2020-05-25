@@ -17,34 +17,17 @@
             "pipeTransport": {
                 "pipeProgram": "/usr/bin/ssh",
                 "pipeArgs": [
-                    "-T", "-i", "/home/pi/.ssh/id_rsa",
+                    "-T", "-i", "/home/michael/.ssh/id_rsa",
                     "pi@192.168.0.18"
                 ],
                 "debuggerPath": "/home/pi/vsdbg/vsdbg"
             },
             "sourceFileMap": {
-                "/home/michael/src/Flasher": "${workspaceRoot}/Flasher"
+                "/home/michael/src/Flasher": "/home/pi/src/Flasher"
             },
             "logging": {
                 "engineLogging": true
             }
-        },
-        {
-            "name": "local console",
-            "type": "coreclr",
-            "request": "launch",
-            "preLaunchTask": "build",
-            "program": "${workspaceFolder}/Flasher/bin/Debug/net5.0/Flasher.dll",
-            "args": [],
-            "cwd": "${workspaceFolder}",
-            "console": "internalConsole",
-            "stopAtEntry": false
-        },
-        {
-            "name": ".NET Core Attach",
-            "type": "coreclr",
-            "request": "attach",
-            "processId": "${command:pickProcess}"
         }
     ]
 }
