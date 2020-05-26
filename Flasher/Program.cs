@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Device.Gpio;
 
 namespace Flasher
 {
@@ -6,7 +7,9 @@ namespace Flasher
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello From Raspberry PI.");
+            Console.WriteLine("Hello From Raspberry PI?");
+
+            var gpio = new System.Device.Gpio.GpioController(PinNumberingScheme.Board);
         }
     }
 }

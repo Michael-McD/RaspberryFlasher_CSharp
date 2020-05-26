@@ -49,7 +49,7 @@
                 "command": "bash",
                 "args": [
                     "-c",
-                    "rsync -avze ssh ${workspaceFolder}/Flasher/bin/Debug/net5.0/publish/ pi@192.168.0.18:'~/src/Flasher/'"
+                    "rsync -avze ssh ${workspaceFolder}/Flasher/bin/Debug/netcoreapp3.1/publish/ pi@192.168.0.18:'~/src/Flasher/'"
                 ]
             },
             "group": "build",
