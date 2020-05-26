@@ -1,7 +1,8 @@
 # RaspberryFlasher_CSharp
-Example of a C# Raspberry Pi GPIO configuration.
+Example of a C# Raspberry Pi GPIO configuration running on Dotnet 3.1.
 
-The progame Visual Studio Codes `tasks` and `launch` configurations.
+The progame makes use of Visual Studio Codes `tasks` and `launch` configurations to run the code in remote debug mode.  I.e. you can debug the code running on the Pi from your local development PC.
+
 
 ## .vscode/task.json
 There are 3 tasks
@@ -14,7 +15,7 @@ The deploy task is the more interesting.  It takes the `publish` task output and
 Note: SSH keys are used for authentication. This requires that the host public key has been added to the Pi's `~/.ssh/authorized_keys` file.
 
 ## .vscode/launch.json
-Configures remote debug mode and triggers the `deploy` task (and its `publish` and `build` dependencies).
+Configures remote debug mode and triggers the `deploy` task (and its `publish` and `build` dependencies) and _launches_ the progame in remote debug mode.
 
 ## The code
 Super simple loop setting an LED output to HIGH then LOW in a loop.
