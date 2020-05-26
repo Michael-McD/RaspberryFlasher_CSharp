@@ -14,4 +14,13 @@ The deploy task is the more interesting.  It takes the `publish` task output and
 Note: SSH keys are used for authentication. This requires that the host public key has been added to the Pi's `~/.ssh/authorized_keys` file.
 
 # .vscode/launch.json
-Configures remote debug mode and triggers the `deploy` task (and its `publish` and `build` dependencies). 
+Configures remote debug mode and triggers the `deploy` task (and its `publish` and `build` dependencies).
+
+
+### SSH requirements
+The Pi must be running an SSH server (i.e. openSSh). This is not installed on Rasberrian Lite for example.
+```
+sudo apt update
+sudo apt install openssh-server
+```
+Check that it's running: `sudo systemctl status ssh`
