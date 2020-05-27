@@ -17,6 +17,8 @@ Note: SSH keys are used for authentication. This requires that the host public k
 ## .vscode/launch.json
 Configures remote debug mode and triggers the `deploy` task (and its `publish` and `build` dependencies) and _launches_ the progame in remote debug mode.
 
+See: [OmniSharp remote debugging](9https://github.com/OmniSharp/omnisharp-vscode/wiki/Attaching-to-remote-processes) and [OmniSharp remote debugging on Linux Arm devices](https://github.com/OmniSharp/omnisharp-vscode/wiki/Remote-Debugging-On-Linux-Arm).
+
 ## The code
 Super simple loop setting an LED output to HIGH then LOW in a loop.
 
